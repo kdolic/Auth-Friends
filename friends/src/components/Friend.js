@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Friend(props) {
-    const {friend} = props
+function Friend({friend}) {
+    
     return (
-        <div>
+        <div key={friend.id}>
             <h4>Name: {friend.name}</h4>
             <p>Age: {friend.age}</p>
             <p>Email: {friend.email}</p>
@@ -11,4 +11,4 @@ function Friend(props) {
     )
 }
 
-export default Friend
+export default Friend;

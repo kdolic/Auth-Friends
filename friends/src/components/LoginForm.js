@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import axiosWithAuth from '../utils/axiosWithAuth';
+import axios from 'axios';
 
 const initialState = {
     username: '',
@@ -9,22 +9,33 @@ const initialState = {
 function LoginForm(props) {
     const [user, setUser] = useState(initialState);
 
-    // const login = event => {
-    //     event.preventDefault();
-    //     axiosWithAuth().post
-    // }
-
     const handleChange = event => {
         setUser({
             ...user,
             [event.target.name]: event.target.value,
         })
     }
+    
+    const login = event => {
+        event.preventDefault();
+        axios.post('http://localhost:5000/api/login', user)
+        .then(res => {
+            console.log('response: ', res);
+            localStorage.setItem('token', res.data.payload);
+            props.history.push('/friends');
+        })
+        .catch(err=> {
+            console.log('error: ', err)
+        })
+    }
 
+    //1. use axios to do a post request.
+    //2. if request is successful, console.log token.
+    //3. if request is unsuccessful, show error.
 
     return (
         <div>
-            <form /*onSubmit={login} */>
+            <form onSubmit={login}>
                 <label>Username: </label><br></br>
                 <input
                 type='text'
@@ -33,7 +44,7 @@ function LoginForm(props) {
                 value={user.username}
                 onChange={handleChange}
                 />
-                  <input
+                <input
                 type='password'
                 name='password'
                 placeholder='Password'
