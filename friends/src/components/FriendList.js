@@ -26,14 +26,14 @@ function FriendList() {
 
 
     return (
-        <div>
+        <div className='list'>
             <h2>Friends List</h2>
-            <div>
+                <AddFriends />
+            <div className='friends'>
                 {friends.map(friend => {
                     return <Friend friend={friend} />
                 })}
             </div>
-            <AddFriends />
         </div>
     )
 }

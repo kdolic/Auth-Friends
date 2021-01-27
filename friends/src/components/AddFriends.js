@@ -25,6 +25,7 @@ function AddFriends(props) {
         .then(res => {
             console.log('response: ', res);
             localStorage.setItem('token', res.data.payload);
+            setFriend(res.data)
             // props.newFriend(friend);
         })
         .catch(err=> {
@@ -33,7 +34,7 @@ function AddFriends(props) {
     }
 
     return (
-        <div>
+        <div className='addFriend'>
             <form onSubmit={addFriend}>
                 <br></br><label>Name: </label>
                 <input
@@ -66,3 +67,5 @@ function AddFriends(props) {
 }
 
 export default AddFriends
+
+// MVP

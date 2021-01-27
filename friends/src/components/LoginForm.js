@@ -34,7 +34,7 @@ function LoginForm(props) {
     //3. if request is unsuccessful, show error.
 
     return (
-        <div>
+        <div className='login'>
             <form onSubmit={login}>
                 <label>Username: </label><br></br>
                 <input
